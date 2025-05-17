@@ -1,0 +1,101 @@
+//Schema done with https://dbdiagram.io
+
+Table Customers {
+  customer_id integer [primary key]
+  name varchar [not null]
+  email varchar [unique, not null]
+  phone_number varchar
+}
+
+Table Animals {
+  animal_id integer [primary key]
+  name varchar [not null]
+  type enum('dog', 'cat') [not null]
+  breed varchar
+  age integer
+  availability boolean [default: true]
+}
+
+Table PetTimePricing {
+  pricing_id integer [primary key]
+  animal_type enum('dog', 'cat') [unique, not null]
+  price_per_hour decimal(5,2) [not null]
+}
+
+
+Table AnimalProducts {
+  product_id integer [primary key]
+  name varchar [not null]
+  description text
+  price decimal(5,2) [not null]
+  suitable_for enum('dog', 'cat', 'both') [not null]
+  stock_quantity integer [default: 0]
+}
+
+Table ProductPurchases {
+  purchase_id integer [primary key]
+  customer_id integer [not null, ref: > Customers.customer_id]
+  product_id integer [not null, ref: > AnimalProducts.product_id]
+  quantity integer [not null, note: 'must be > 0']
+  purchase_time datetime [not null, default: 'CURRENT_TIMESTAMP']
+  total_price decimal(6,2) [not null]
+}
+
+Table MenuItems {
+  item_id integer [primary key]
+  name varchar [not null]
+  description text
+  price decimal(5,2) [not null]
+  category enum('drink', 'food', 'dessert') [not null]
+}
+
+Table Orders {
+  order_id integer [primary key]
+  customer_id integer [not null, ref: > Customers.customer_id]
+  order_time datetime [not null, default: 'CURRENT_TIMESTAMP']
+  total_price decimal(6,2) [not null]
+}
+
+Table OrderItems {
+  order_item_id integer [primary key]
+  order_id integer [not null, ref: > Orders.order_id]
+  item_id integer [not null, ref: > MenuItems.item_id]
+  quantity integer [not null, note: 'must be > 0']
+}
+
+Table Messages {
+  review_id integer [primary key]
+  customer_id integer [not null, ref: > Customers.customer_id]
+  review_type enum('animal', 'menu_item', 'experience') [not null]
+  animal_id integer [ref: > Animals.animal_id]
+  item_id integer [ref: > MenuItems.item_id]
+  rating integer [not null, note: '1 to 5']
+  comment text
+  review_date datetime [not null, default: 'CURRENT_TIMESTAMP']
+  note: '''
+    For review_type = 'animal', animal_id must be set and item_id null.
+    For review_type = 'menu_item', item_id must be set and animal_id null.
+    For review_type = 'experience', both animal_id and item_id are null.
+  '''
+}
+
+Table Memberships {
+  membership_id integer [primary key]
+  customer_id integer [unique, not null, ref: > Customers.customer_id]
+  loyalty_points integer [default: 0]
+  membership_start_date date [not null]
+  membership_status enum('active', 'inactive', 'suspended') [default: 'active']
+  last_updated datetime [not null, default: 'CURRENT_TIMESTAMP']
+}
+
+Table LoyaltyTransactions {
+  transaction_id integer [primary key]
+  membership_id integer [not null, ref: > Memberships.membership_id]
+  transaction_type enum('earn', 'redeem') [not null]
+  points integer [not null, note: 'must be > 0']
+  description text
+  transaction_date datetime [not null, default: 'CURRENT_TIMESTAMP']
+}
+
+
+
