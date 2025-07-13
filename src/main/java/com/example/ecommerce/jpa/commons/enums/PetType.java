@@ -1,4 +1,4 @@
-package com.example.ecommerce.jpa.entities;
+package com.example.ecommerce.jpa.commons.enums;
 
     public enum PetType {
         CAT("Cat"),

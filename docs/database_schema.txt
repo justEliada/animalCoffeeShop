@@ -13,6 +13,7 @@ Table Animals {
   type enum('dog', 'cat') [not null]
   breed varchar
   age integer
+  petImage BLOB
   availability boolean [default: true]
 }
 

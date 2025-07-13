@@ -1,11 +1,11 @@
 package com.example.ecommerce.jpa.entities;
+import com.example.ecommerce.jpa.commons.enums.PetType;
 import jakarta.persistence.*;
 
-import java.util.Date;
 import java.util.UUID;
 @Entity
-@Table(name = "pets")
-public class Pets {
+@Table(name = "animals")
+public class Animals {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -13,9 +13,12 @@ public class Pets {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private PetType species; // ENUM: CAT, DOG, RABBIT, OTHER
+    private PetType breed; // ENUM: CAT, DOG, RABBIT, OTHER
 
     private int age;
     private String description;
-    private String imageUrl;
-}
+    private Boolean availability;
+
+    @Lob
+    @Column(name = "petImage") // saving image as blob
+    private byte[] petImage;}

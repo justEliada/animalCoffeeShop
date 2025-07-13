@@ -15,7 +15,6 @@ public class Customers {
     private String name;
     private String email;
     private String password;
-    private String phone;
 
     @Column(name = "created_at", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
