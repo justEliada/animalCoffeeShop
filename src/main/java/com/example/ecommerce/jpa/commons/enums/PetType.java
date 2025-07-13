@@ -4,7 +4,7 @@ package com.example.ecommerce.jpa.commons.enums;
         CAT("Cat"),
         DOG("Dog"),
         RABBIT("Rabbit"),
-        OTHER("Other");
+        BIRD("Bird");
 
         private final String displayName;
 

@@ -3,7 +3,8 @@ package com.example.ecommerce.jpa.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -12,8 +13,10 @@ public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private int id;
+    private UUID id;
     private Customers customerId;
+
+    private List<OrderItems> items = new ArrayList<>();
 
     @Column(name = "oder_time", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

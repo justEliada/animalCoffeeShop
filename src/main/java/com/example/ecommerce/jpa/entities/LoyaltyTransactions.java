@@ -14,10 +14,10 @@ public class LoyaltyTransactions {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID ID;
 
-    private Membership membershipId;
+    @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
-    private int points;
 
+    private int points;
     private LocalDateTime transactionDate = LocalDateTime.now();
 
 }

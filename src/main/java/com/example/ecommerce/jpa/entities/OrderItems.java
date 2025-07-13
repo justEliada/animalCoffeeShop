@@ -1,7 +1,5 @@
 package com.example.ecommerce.jpa.entities;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.Order;
-
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -14,7 +12,7 @@ public class OrderItems {
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    private Order orderI;
+    private Orders order;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)

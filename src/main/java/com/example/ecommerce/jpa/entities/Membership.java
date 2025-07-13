@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,8 +17,14 @@ public class Membership {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private Customers customerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customers customer;
+
     private LoyaltyType loyaltyType;
+
+    //1. cust has 1 membership -> many transactions
+    private List<LoyaltyTransactions> transactions = new ArrayList<>();
 
     @Column(name = "membership_start_date", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

@@ -15,5 +15,6 @@ public class MenuItems {
 
     private String name;
     private int price;
+    @Enumerated(EnumType.STRING)
     private ItemType itemType;
 }
