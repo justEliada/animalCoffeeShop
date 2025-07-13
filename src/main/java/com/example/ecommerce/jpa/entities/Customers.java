@@ -2,6 +2,7 @@ package com.example.ecommerce.jpa.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -18,5 +19,5 @@ public class Customers {
 
     @Column(name = "created_at", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

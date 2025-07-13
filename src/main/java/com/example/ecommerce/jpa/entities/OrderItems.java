@@ -14,11 +14,11 @@ public class OrderItems {
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    private Order orderI;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
-    private Products product;
+    private Products productId;
 
     private int quantity;
     private BigDecimal price;
