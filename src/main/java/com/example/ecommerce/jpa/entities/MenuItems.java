@@ -1,5 +1,6 @@
 package com.example.ecommerce.jpa.entities;
 
+import com.example.ecommerce.jpa.commons.enums.ItemType;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -14,5 +15,5 @@ public class MenuItems {
 
     private String name;
     private int price;
-    private
+    private ItemType itemType;
 }
