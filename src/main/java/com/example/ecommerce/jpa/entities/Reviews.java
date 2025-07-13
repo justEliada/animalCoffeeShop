@@ -1,6 +1,7 @@
 package com.example.ecommerce.jpa.entities;
 
-import com.example.ecommerce.jpa.commons.enums.RatingType;
+import com.example.ecommerce.jpa.commons.enums.AnimalRatingType;
+import com.example.ecommerce.jpa.commons.enums.ProductRatingType;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,12 @@ public class Reviews {
     private UUID id;
 
     private Customers customerId;
-    private RatingType ratingType;
+
+    @Enumerated(EnumType.STRING)
+    private AnimalRatingType animalRatingType;
+
+    @Enumerated(EnumType.STRING)
+    private ProductRatingType productRatingType;
 
     private Animals animalId;
     private OrderItems oderItemsId;

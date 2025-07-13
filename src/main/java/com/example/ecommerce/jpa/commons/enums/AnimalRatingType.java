@@ -1,6 +1,6 @@
 package com.example.ecommerce.jpa.commons.enums;
 
-public enum RatingType {
+public enum AnimalRatingType {
     FRIENDLINESS("Friendliness"),
     PLAYFULNESS("Playfulness"),
     CLEANLINESS("Cleanliness"),
@@ -11,7 +11,7 @@ public enum RatingType {
 
     private final String description;
 
-    RatingType(String description) {
+    AnimalRatingType(String description) {
         this.description = description;
     }
 
